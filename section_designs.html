@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Component Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --surface: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --bg: #020617;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --surface: #0f172a;
+            --border: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        section { padding: 80px 10%; border-bottom: 1px solid var(--border); }
+        .label { color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
+        h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        p.desc { color: var(--muted); max-width: 600px; margin-bottom: 3rem; font-size: 1.1rem; }
+
+        /* 1. Hero - Modern Centered */
+        .hero-centered { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; }
+        .hero-centered h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .cta-group { display: flex; gap: 1rem; }
+        .btn { padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; transition: 0.2s; text-decoration: none; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+        /* 2. Logo Cloud / Social Proof */
+        .logo-cloud { text-align: center; background: var(--surface); }
+        .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem; opacity: 0.5; filter: grayscale(1); }
+        .logo-grid span { font-weight: 800; font-size: 1.2rem; }
+
+        /* 3. Features - 3 Column Grid */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { padding: 2rem; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
+        .icon-box { width: 40px; height: 40px; background: var(--primary); border-radius: 8px; margin-bottom: 1.5rem; }
+
+        /* 4. Split Section - Alternating */
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .split-img { background: var(--surface); border-radius: 16px; height: 400px; width: 100%; border: 1px solid var(--border); }
+
+        /* 5. Bento Grid - Modern Dashboard style */
+        .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 200px); gap: 1rem; }
+        .bento-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+        .bento-1 { grid-column: span 2; grid-row: span 2; }
+        .bento-2 { grid-column: span 2; }
+
+        /* 6. Stats - Large Impact */
+        .stats { display: flex; justify-content: space-around; text-align: center; }
+        .stat-val { font-size: 3rem; font-weight: 800; color: var(--primary); }
+
+        /* 7. Pricing Tiers */
+        .pricing-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+        .price-card { padding: 3rem 2rem; border: 1px solid var(--border); border-radius: 16px; width: 300px; position: relative; }
+        .popular { border: 2px solid var(--primary); transform: scale(1.05); }
+        .popular::after { content: 'Best Value'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; }
+
+        /* 8. Testimonials - Quote style */
+        .testimonial { max-width: 800px; margin: 0 auto; text-align: center; }
+        .quote { font-size: 1.5rem; font-style: italic; margin-bottom: 2rem; }
+
+        /* 9. Accordion FAQ */
+        .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; cursor: pointer; }
+        .faq-q { font-weight: 600; display: flex; justify-content: space-between; }
+
+        /* 10. Final CTA - High Contrast */
+        .final-cta { background: var(--primary); color: white; text-align: center; border-radius: 24px; margin: 4rem 10%; border: none; }
+        .final-cta h2 { color: white; }
+        .final-cta .btn-secondary { background: white; color: var(--primary); }
+
+        @media (max-width: 768px) {
+            .split, .bento { grid-template-columns: 1fr; }
+            .hero-centered h1 { font-size: 2.5rem; }
+            .pricing-grid { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <section class="hero-centered">
+        <span class="label">New Version 2.0 is out</span>
+        <h1>Scale your infrastructure <br>without the headache.</h1>
+        <p class="desc">High-performance backend solutions for teams that demand 99.9% uptime and seamless API integrations.</p>
+        <div class="cta-group">
+            <a href="#" class="btn btn-primary">Start Building</a>
+            <a href="#" class="btn btn-secondary">View Documentation</a>
+        </div>
+    </section>
+
+    <section class="logo-cloud">
+        <p style="margin-bottom: 2rem; font-size: 0.9rem; font-weight: 600;">TRUSTED BY TOP ENGINEERING TEAMS</p>
+        <div class="logo-grid">
+            <span>GITHUB</span> <span>VERCEL</span> <span>STRIPE</span> <span>AWS</span> <span>POSTMAN</span>
+        </div>
+    </section>
+
+    <section>
+        <span class="label">The Tech Stack</span>
+        <h2>Built for modern web.</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon-box"></div>
+                <h3>Real-time Sync</h3>
+                <p>Event-driven architecture ensuring data consistency across all microservices.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"></div>
+                <h3>Secure by Default</h3>
+                <p>Enterprise-grade encryption and automated security patching at every layer.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"></div>
+                <h3>Cloud Native</h3>
+                <p>Deploy anywhere with Docker, Kubernetes, and seamless CI/CD pipelines.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="split">
+        <div>
+            <span class="label">Advanced Analytics</span>
+            <h2>Visualize your data <br>pipeline in real-time.</h2>
+            <p class="desc">Get deep insights into your API performance and database latency with our built-in observability tools.</p>
+            <a href="#" class="btn btn-primary">Try Dashboard</a>
+        </div>
+        <div class="split-img"></div>
+    </section>
+
+    <section>
+        <span class="label">Workflow</span>
+        <h2>Everything in one place.</h2>
+        <div class="bento">
+            <div class="bento-item bento-1"><h3>Performance Metrics</h3></div>
+            <div class="bento-item bento-2"><h3>Security Logs</h3></div>
+            <div class="bento-item"><h3>Team Collab</h3></div>
+            <div class="bento-item"><h3>API Docs</h3></div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div><div class="stat-val">600ms</div><p>Avg Latency</p></div>
+        <div><div class="stat-val">99.9%</div><p>Reliability</p></div>
+        <div><div class="stat-val">12k+</div><p>Active Devs</p></div>
+    </section>
+
+    <section style="text-align: center;">
+        <h2>Simple, transparent pricing.</h2>
+        <p class="desc" style="margin: 0 auto 3rem;">No hidden fees. Scale as you grow.</p>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <p>Free</p>
+                <h3>$0/mo</h3>
+                <p style="margin: 1rem 0;">For hobbyists</p>
+                <button class="btn btn-secondary">Get Started</button>
+            </div>
+            <div class="price-card popular">
+                <p>Pro</p>
+                <h3>$49/mo</h3>
+                <p style="margin: 1rem 0;">For small teams</p>
+                <button class="btn btn-primary">Start Pro Trial</button>
+            </div>
+            <div class="price-card">
+                <p>Enterprise</p>
+                <h3>Custom</h3>
+                <p style="margin: 1rem 0;">For massive scale</p>
+                <button class="btn btn-secondary">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <p class="quote">"This platform changed how we handle deployment. We went from weekly releases to multiple times a day without breaking a sweat."</p>
+        <p><strong>Hiếu</strong> — Senior Software Engineer</p>
+    </section>
+
+    <section style="max-width: 800px; margin: 0 auto; border: none;">
+        <h2>Common Questions</h2>
+        <div class="faq-item">
+            <div class="faq-q">Does it support Node.js v20? <span>+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How do I migrate from legacy systems? <span>+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Is there a dedicated support channel? <span>+</span></div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <h2>Ready to build the future?</h2>
+        <p style="margin-bottom: 2rem;">Join thousands of developers building on our infrastructure.</p>
+        <a href="#" class="btn btn-secondary">Create Free Account</a>
+    </section>
+
+</body>
+</html>
