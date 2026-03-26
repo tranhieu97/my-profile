@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Color Combinations for Modern Web</title>
+    <style>
+        /* Modern Reset & Base Styles */
+        :root {
+            --default-text: #111827;
+            --default-bg: #f9fafb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+        }
+
+        body {
+            color: var(--default-text);
+            background-color: var(--default-bg);
+            line-height: 1.6;
+            padding-bottom: 5rem;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            padding: 5rem 0 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ffffff 100%);
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 4rem;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            background: linear-gradient(to right, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Palette Sections Base */
+        .palette-section {
+            margin-bottom: 5rem;
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid transparent;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .vibe-badge {
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Color Bar Grid */
+        .color-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .color-swatch {
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 180px;
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-hex {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .color-label {
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* --- Palette 1: Futuristic SaaS --- */
+        #p1 {
+            background-color: #f0f9ff;
+            border-color: #bae6fd;
+        }
+        #p1 h2 { color: #0369a1; }
+        #p1 .vibe-badge { background-color: #0ea5e9; color: white; }
+
+        /* --- Palette 2: Earthy Organic --- */
+        #p2 {
+            background-color: #fefcfb;
+            border-color: #f7e1d7;
+        }
+        #p2 h2 { color: #8c6e5e; }
+        #p2 .vibe-badge { background-color: #d8c0b1; color: #443c35; }
+
+        /* --- Palette 3: Deep Moody Tech --- */
+        #p3 {
+            background-color: #0f172a;
+            border-color: #1e293b;
+        }
+        #p3 h2 { color: #f1f5f9; }
+        #p3 .vibe-badge { background-color: #38bdf8; color: #0f172a; }
+
+        /* --- Palette 4: Playful Gradient Bloom --- */
+        #p4 {
+            background-color: #fff1f2;
+            border-color: #fecdd3;
+        }
+        #p4 h2 { color: #9f1239; }
+        #p4 .vibe-badge { background-color: #ec4899; color: white; }
+
+        /* --- Palette 5: Stark Minimalist Mono --- */
+        #p5 {
+            background-color: #ffffff;
+            border-color: #e5e7eb;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+        }
+        #p5 h2 { color: #111827; }
+        #p5 .vibe-badge { background-color: #111827; color: white; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* Toast notification */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111827;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 99px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 2000;
+        }
+        #toast.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .section-header { grid-template-columns: 1fr; }
+            .vibe-badge { justify-self: start; }
+            .palette-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Trending Color Combinations</h1>
+            <p>A curated selection of modern palettes dominating web design. Click any swatch to copy its HEX code.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="p1" class="palette-section">
+            <div class="section-header">
+                <h2>1. Futuristic SaaS & Tech</h2>
+                <span class="vibe-badge">Clean & Professional</span>
+            </div>
+            <p style="color: #075985; margin-bottom: 2rem; max-width: 700px;">The definitive choice for modern startups and software platforms. This combination pairs a trusted, authoritative base with a vibrant, digital accent to signal innovation and reliability.</p>
+            <div class="color-bar">
+                <div class="color-swatch" style="background-color: #0f172a;" data-hex="#0F172A">
+                    <span class="color-hex" style="background: rgba(255,255,255,0.1); color: white;">#0F172A</span>
+                    <span class="color-label" style="color: #cbd5e1;">Base / Header</span>
+                </div>
+                <div class="color-swatch" style="background-color: #38bdf8;" data-hex="#38BDF8">
+                    <span class="color-hex">#38BDF8</span>
+                    <span class="color-label">Primary Accent</span>
+                </div>
+                <div class="color-swatch" style="background-color: #f8fafc;" data-hex="#F8FAFC">
+                    <span class="color-hex">#F8FAFC</span>
+                    <span class="color-label">Background / Surface</span>
+                </div>
+                <div class="color-swatch" style="background-color: #94a3b8;" data-hex="#94A3B8">
+                    <span class="color-hex">#94A3B8</span>
+                    <span class="color-label">Secondary Text</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="p2" class="palette-section">
+            <div class="section-header">
+                <h2>2. Earthy & Organic</h2>
+                <span class="vibe-badge">Warm & Authentic</span>
+            </div>
+            <p style="color: #634a3f; margin-bottom: 2rem; max-width: 700px;">Inspired by natural textures, sustainability, and calm. Perfect for wellness brands, eco-conscious products, interior design, or lifestyle blogs looking for a sophisticated, grounded feel.</p>
+            <div class="color-bar">
+                <div class="color-swatch" style="background-color: #f7e1d7;" data-hex="#F7E1D7">
+                    <span class="color-hex">#F7E1D7</span>
+                    <span class="color-label">Primary Surface</span>
+                </div>
+                <div class="color-swatch" style="background-color: #8c6e5e;" data-hex="#8C6E5E">
+                    <span class="color-hex">#8C6E5E</span>
+                    <span class="color-label">Main Accent / Header</span>
+                </div>
+                <div class="color-swatch" style="background-color: #fffcfb;" data-hex="#FFFCFB">
+                    <span class="color-hex">#FFFCFB</span>
+                    <span class="color-label">Background</span>
+                </div>
+                <div class="color-swatch" style="background-color: #443c35;" data-hex="#443C35">
+                    <span class="color-hex" style="background: rgba(255,255,255,0.1); color: white;">#443C35</span>
+                    <span class="color-label" style="color: #f7e1d7;">Body Text</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="p3" class="palette-section">
+            <div class="section-header">
+                <h2>3. Deep Moody Tech</h2>
+                <span class="vibe-badge">Sleek & Cyberpunk</span>
+            </div>
+            <p style="color: #94a3b8; margin-bottom: 2rem; max-width: 700px;">A high-contrast evolution of standard dark mode. Utilizing a deep slate base instead of true black provides depth, allowing neon cyan to pop with energetic intensity. Ideal for developer tools, gaming, and AI ventures.</p>
+            <div class="color-bar">
+                <div class="color-swatch" style="background-color: #0f172a;" data-hex="#0F172A">
+                    <span class="color-hex" style="background: rgba(255,255,255,0.1); color: white;">#0F172A</span>
+                    <span class="color-label" style="color: #f8fafc;">Background Base</span>
+                </div>
+                <div class="color-swatch" style="background-color: #0891b2;" data-hex="#0891B2">
+                    <span class="color-hex">#0891B2</span>
+                    <span class="color-label">Primary Accent</span>
+                </div>
+                <div class="color-swatch" style="background-color: #1e293b;" data-hex="#1E293B">
+                    <span class="color-hex" style="background: rgba(255,255,255,0.1); color: white;">#1E293B</span>
+                    <span class="color-label" style="color: #94a3b8;">Card / Surface</span>
+                </div>
+                <div class="color-swatch" style="background-color: #f1f5f9;" data-hex="#F1F5F9">
+                    <span class="color-hex">#F1F5F9</span>
+                    <span class="color-label">Header Text</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="p4" class="palette-section">
+            <div class="section-header">
+                <h2>4. Playful Gradient Bloom</h2>
+                <span class="vibe-badge">Energetic & Social</span>
+            </div>
+            <p style="color: #be123c; margin-bottom: 2rem; max-width: 700px;">Bright, optimistic, and energetic. This palette moves away from strict flat design, using soft gradients between romantic hues to create depth. Perfect for social apps, dating platforms, and creative portfolio highlights.</p>
+            <div class="color-bar">
+                <div class="color-swatch" style="background-color: #ec4899;" data-hex="#EC4899">
+                    <span class="color-hex">#EC4899</span>
+                    <span class="color-label">Gradient End</span>
+                </div>
+                <div class="color-swatch" style="background-color: #f43f5e;" data-hex="#F43F5E">
+                    <span class="color-hex">#F43F5E</span>
+                    <span class="color-label">Gradient Start</span>
+                </div>
+                <div class="color-swatch" style="background-color: #ffffff;" data-hex="#FFFFFF">
+                    <span class="color-hex">#FFFFFF</span>
+                    <span class="color-label">Background</span>
+                </div>
+                <div class="color-swatch" style="background-color: #4c0519;" data-hex="#4C0519">
+                    <span class="color-hex" style="background: rgba(255,255,255,0.1); color: white;">#4C0519</span>
+                    <span class="color-label" style="color: #fecdd3;">Text Header</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="p5" class="palette-section">
+            <div class="section-header">
+                <h2>5. Stark Minimalist Mono</h2>
+                <span class="vibe-badge">Timeless & Brutalist</span>
+            </div>
+            <p style="color: #4b5563; margin-bottom: 2rem; max-width: 700px;">The classic revisited. Removes all color distraction to focus purely on typography, layout, and image content. A sophisticated choice for architecture portfolios, high-fashion branding, and luxury products.</p>
+            <div class="color-bar">
+                <div class="color-swatch" style="background-color: #ffffff;" data-hex="#FFFFFF">
+                    <span class="color-hex">#FFFFFF</span>
+                    <span class="color-label">Background</span>
+                </div>
+                <div class="color-swatch" style="background-color: #111827;" data-hex="#111827">
+                    <span class="color-hex" style="background: rgba(255,255,255,0.1); color: white;">#111827</span>
+                    <span class="color-label" style="color: #d1d5db;">Main Text / Accent</span>
+                </div>
+                <div class="color-swatch" style="background-color: #e5e7eb;" data-hex="#E5E7EB">
+                    <span class="color-hex">#E5E7EB</span>
+                    <span class="color-label">Lines / Borders</span>
+                </div>
+                <div class="color-swatch" style="background-color: #f3f4f6;" data-hex="#F3F4F6">
+                    <span class="color-hex">#F3F4F6</span>
+                    <span class="color-label">Card Surface</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Color Trend Showcase. Open source template.</p>
+        </div>
+    </footer>
+
+    <div id="toast">Hex code copied!</div>
+
+    <script>
+        // Copy to clipboard functionality
+        document.querySelectorAll('.color-swatch').forEach(swatch => {
+            swatch.addEventListener('click', function() {
+                const hex = this.getAttribute('data-hex');
+                if (hex) {
+                    navigator.clipboard.writeText(hex).then(() => {
+                        showToast(`Copied ${hex}`);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                }
+            });
+        });
+
+        // Simple toast notification
+        const toast = document.getElementById('toast');
+        let toastTimeout;
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('visible');
+            
+            // Clear any existing timer so it doesn't close prematurely
+            clearTimeout(toastTimeout);
+            
+            // Set timer to close after 2.5 seconds
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
